@@ -17,7 +17,8 @@
       color: #1a1a1a;
       line-height: 1.6;
       scroll-behavior: smooth;
-      padding: 50px 200px;
+      padding: 0px 40px;
+      padding-top: 30px;
     }
 
     a {
@@ -25,15 +26,85 @@
       text-decoration: none;
     }
 
-    .container {
-      max-width: 960px;
+    .scrolling-nav-box {
+      position: fixed;
+      left: 0;
+      right: 0;
       margin: 0 auto;
+      max-width: 1080px;
+      width: 100%;
+      background-color: #ffffff3c;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease transform 0.3s ease;
+    }
+
+    .scrolling-nav-box {
+      transform: translateY(-20px);
+      opacity: 0;
+      animation: navFadeIn 0.6s forwards ease-out;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes navFadeIn {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .scrolling-nav-box nav {
+      width: 100%;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .scrolling-nav-box ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .scrolling-nav-box li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      padding-bottom: 4px;
+      position: relative;
+    }
+
+    .scrolling-nav-box li a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #5a5a5a;
+      transition: width 0.6s ease;
+    }
+
+    .scrolling-nav-box li a:hover::after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1080px;
       padding: 2rem;
+      margin: 0 auto;
     }
 
     header {
       text-align: center;
       margin-bottom: 3rem;
+      padding-top: 60px;
     }
 
     header h1 {
@@ -60,12 +131,12 @@
 
     .grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
     }
 
     .card {
-      background: #fff;
+      background: #a3d0c01f;
       border: 1px solid #e0e0e0;
       border-radius: 12px;
       padding: 1.5rem;
@@ -76,6 +147,21 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
 
+    .card {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cardFadeUp 0.6s forwards ease-out;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes cardFadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
     footer {
       text-align: center;
       margin-top: 4rem;
@@ -83,58 +169,73 @@
       color: #999;
     }
 
-    .scrolling-nav-box {
-        position: absolute;
-        top: 100px;
-        left: 40px;
-        width: 140px;
-        background: linear-gradient(135deg, #f7f9f9, #ffffff);
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        padding: 20px;
-        transition: transform 0.6s ease-out;
-    }
-
-    .scrolling-nav-box:hover {
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    }
-
-    .scrolling-nav-box nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .scrolling-nav-box nav li {
-        margin-bottom: 16px;
-        display: flex;
-        align-items: center;
-    }
-
-    .scrolling-nav-box nav a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        transition: color 0.3s;
-    }
-
-    .scrolling-nav-box nav a:hover,
-    .scrolling-nav-box nav a.active {
-        color: #004d40;
-        font-weight: 700;
-    }
-
-    @media (max-width: 768px) {
-        .scrolling-nav-box {
-            display: none;
-        }
-    }
-
     ul {
         padding-left: 20px;
     }
+
+    #mode-toggle {
+      position: absolute;
+      margin-left: 80%;
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-color);
+      transition: color 0.4s ease transform 0.2s ease;
+    }
+
+    #mode-toggle:active {
+      transform: scale(0.85);
+      transition: transform 0.1s ease;
+    }
+
+    body.dark {
+      background-color: #121212;
+      color: #e0e0e0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark a {
+      color: #80cbc4;
+    }
+
+    body.dark .scrolling-nav-box {
+      background-color: #1e1e1ebb;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+      color: #e0e0e0;
+    }
+
+    body.dark .scrolling-nav-box li a {
+      color: #ccc;
+    }
+
+    body.dark .scrolling-nav-box li a::after {
+      background-color: #80cbc4;
+    }
+
+    body.dark .card {
+      background: #26323880;
+      border: 1px solid #444;
+      color: #e0e0e0;
+    }
+
+    body.dark .card:hover {
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    body.dark header h1,
+    body.dark section h2 {
+      color: #80cbc4;
+    }
+
+    body.dark footer {
+      color: #777;
+    }
+
+    body.dark #mode-toggle {
+      color: #80cbc4;
+    }
+
   </style>
 </head>
 <body>
@@ -142,11 +243,12 @@
     <div class="scrolling-nav-box" id="scrollingNav">
         <nav>
             <ul>
-            <li><a href="#intro">소개</a></li>
-            <li><a href="#skills">기술 스택</a></li>
-            <li><a href="#projects">프로젝트</a></li>
-            <li><a href="#experience">경험</a></li>
+              <li><a href="#intro">소개</a></li>
+              <li><a href="#skills">기술 스택</a></li>
+              <li><a href="#projects">프로젝트</a></li>
+              <li><a href="#experience">경험</a></li>
             </ul>
+            <button id="mode-toggle">🌙</button>
         </nav>
     </div>
 
@@ -159,7 +261,7 @@
     <section id="intro">
       <h2><i class="fas fa-user"></i> 소개</h2>
       <p>
-        빅데이터 전공자로서 기술과 사람 사이의 균형을 고민합니다.<br> 복잡한 데이터 속에서 의미를 찾아내고 그것을 쉽고 명확하게 전달하는 일에 진심을 다하고 있습니다<br>
+        빅데이터 전공자로서 기술과 사람 사이의 균형을 고민합니다.<br> 복잡한 데이터 속에서 의미를 찾아내고 그것을 쉽고 명확하게 전달하는 일에 진심을 다하고 있습니다.<br>
         이 페이지는 제가 걸어온 길과 배운 것들 그리고 앞으로 나아갈 방향을 담은 공간입니다. <br>저의 관심과 여정을 공유하며 함께할 기회를 만들어가고 싶습니다.
       </p>
     </section>
@@ -216,51 +318,65 @@
       </ul>
     </section>
 
+    <section id="email">
+      <h2><i class="fas fa-user"></i> 연락처</h2>
+      <p>
+        프로젝트에 대해 궁금하시거나 함께 일하고 싶으시면 아래로 연락 주세요.
+      </p>
+      <ul>
+        <li><a href="" target="_blank">email</a></li>
+        <li><a href="#" target="_blank">인스타그램</a> (추후 연동 예정)</li>
+      </ul>
+    </section>
+
     <footer>
       &copy; 2025 홍가연. All rights reserved.
     </footer>
   </div>
 
   <script>
-    const navBox = document.getElementById("scrollingNav");
-    let lastScrollY = window.scrollY;
+    const toggleBtn = document.getElementById('mode-toggle');
+    const body = document.body;
 
-    function followScroll() {
-        const offset = 100;
-        const targetY = window.scrollY + offset;
-
-        const delta = targetY - parseFloat(navBox.style.top || 0);
-        navBox.style.transform = `translateY(${delta}px)`;
+    function setMode(mode) {
+      if (mode === 'dark') {
+        body.classList.add('dark');
+        toggleBtn.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        body.classList.remove('dark');
+        toggleBtn.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      }
     }
 
-    window.addEventListener("scroll", () => {
-        followScroll();
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setMode(savedTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const isDark = body.classList.contains('dark');
+      setMode(isDark ? 'light' : 'dark');
     });
 
-    window.addEventListener("load", () => {
-        navBox.style.top = "80px";
-        navBox.style.transform = "translateY(0)";
-    });
+    function fadeToggleDarkMode() {
+      body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
+      body.classList.toggle('dark');
+    }
 
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".scrolling-nav-box nav a");
-
-    window.addEventListener("scroll", () => {
-        let current = "";
-        sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 120) {
-            current = section.getAttribute("id");
-        }
+    document.querySelectorAll('.scrolling-nav-box a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        window.scrollTo({
+          top: targetSection.offsetTop - 70,
+          behavior: 'smooth'
         });
-
-        navLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === `#${current}`) {
-            link.classList.add("active");
-        }
-        });
+      }
     });
+  });
+    
   </script>
 </body>
 </html>
