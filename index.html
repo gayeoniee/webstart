@@ -1,313 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>가연의 홈페이지</title>
-    
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>홍가연 포트폴리오</title>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f5f7f6;
+      color: #1a1a1a;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      padding: 50px 200px;
+    }
+
+    a {
+      color: #1a3d2f;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #1a3d2f;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #1a3d2f;
+      padding-bottom: 0.3rem;
+      color: #1a3d2f;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    .scrolling-nav-box {
+        position: absolute;
+        top: 100px;
+        left: 40px;
+        width: 140px;
+        background: linear-gradient(135deg, #f7f9f9, #ffffff);
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        padding: 20px;
+        transition: transform 0.6s ease-out;
+    }
+
+    .scrolling-nav-box:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .scrolling-nav-box nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .scrolling-nav-box nav li {
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+    }
+
+    .scrolling-nav-box nav a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        transition: color 0.3s;
+    }
+
+    .scrolling-nav-box nav a:hover,
+    .scrolling-nav-box nav a.active {
+        color: #004d40;
+        font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+        .scrolling-nav-box {
+            display: none;
         }
+    }
 
-        body {
-            background-color: #ffffff;
-            color: #2e3a32;
-            line-height: 1.6;
-            padding: 60px;
-        }
-
-        header {
-            background: linear-gradient(225deg, #c8eccd41, #b5cfb7);
-            padding: 50px 20px;
-            border-radius: 20px;
-            border-top-left-radius: 70px;
-            border-top-right-radius: 70px;
-            border-width: 4px;
-            border-color: #6f8b81;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            color: #3b3029;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        header h1 {
-            font-size: 2.3rem;
-            margin-bottom: 30px;
-            color: #2b3a32;
-        }
-
-        header p {
-            font-size: 1.0rem;
-        }
-
-        .dark-toggle {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 30px;
-            background-color: #688568;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .dark-toggle:hover {
-            background-color: #3f523f;
-        }
-
-        nav {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-
-        nav a {
-            background-color: #aac5ac;
-            padding: 8px 18px;
-            border-radius: 30px;
-            text-decoration: none;
-            color: #2b3833;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        nav a:hover {
-            background: linear-gradient(135deg, #7faa85, #808680);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: #faf8f4;
-            padding: 20px;
-            border-radius: 20px;
-            border-style: solid;
-            border-width: 0px 0px 0px 4px;
-            border-color: #8daf84;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
-        }
-
-        .inner-card {
-            padding: 20px;
-            border-style: inset;
-            border-color: #8daf84;
-            background-color: #fffcf6;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-top: 10px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #7e7e7e;
-            font-size: 0.9rem;
-        }
-
-        ul {
-            list-style-type: square;
-            margin-left: 20px;
-        }
-
-        h2 {
-            color: #3c4a40;
-        }
-
-        h3 {
-            color: #6a584a;
-        }
-
-        hr {
-            border: none;
-            height: 2px;
-            background-color: #8ea386;
-        }
-
-        .dark-mode {
-            background-color: #2e3a32;
-            color: #f2efe7;
-        }
-
-        .dark-mode header {
-            background: linear-gradient(225deg, #627768, #6c7971);
-            color: #ece8df;
-        }
-
-        .dark-mode nav a {
-            background-color: #718574;
-            color: #f2efe7;
-        }
-
-        .dark-mode .card {
-            background-color: #97a79c;
-            border-color: #91a189;
-            color: #f5efe6;
-        }
-
-        .dark-mode .inner-card {
-            background-color: #4d5b51;
-            color: #e9e4d8;
-        }
-
-        .dark-mode hr {
-            background-color: #d9e9d5;
-        }
-
-        .dark-mode h3 {
-            color: white;
-        }
-
-        .dark-mode header p {
-            font-size: 1.0rem;
-            font-weight: 500;
-            animation: fadeInUp 1s ease-out;
-            background: linear-gradient(270deg, #e7f8e0, #b2b0ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeInUp 1s ease-out, gradientMove 6s ease infinite;
-            background-size: 200% 200%;
-        }
-
-        header p {
-            font-size: 1.0rem;
-            font-weight: 500;
-            animation: fadeInUp 1s ease-out;
-            background: linear-gradient(270deg, #619649, #7873f5);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeInUp 1s ease-out, gradientMove 6s ease infinite;
-            background-size: 200% 200%;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        #typing::after {
-            content: "|";
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            from, to { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
-    </style>
-
+    ul {
+        padding-left: 20px;
+    }
+  </style>
 </head>
 <body>
+
+    <div class="scrolling-nav-box" id="scrollingNav">
+        <nav>
+            <ul>
+            <li><a href="#intro">소개</a></li>
+            <li><a href="#skills">기술 스택</a></li>
+            <li><a href="#projects">프로젝트</a></li>
+            <li><a href="#experience">경험</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container">
     <header>
-        <button class="dark-toggle" id="darkModeToggle">다크 모드</button>
-        <h1>홍가연의 프로필 홈</h1>
-        <p id="typing">화려하진 않지만 흔들리지 않는 걸음으로 오래도록 남는 사람을 꿈꿉니다</p>
+      <h1>GAYEONfolio</h1>
+      <p>화려하진 않지만 흔들리지 않는 걸음으로 오래도록 남는 사람을 꿈꿉니다</p>
     </header>
 
-    <nav>
-        <a href="#about">소개</a>
-        <a href="#skills">기술 스택</a>
-        <a href="#projects">프로젝트</a>
-        <a href="#experience">경험</a>
-        <a href="#blog">개인 저장소</a>
-        <a href="#contact">연락</a>
-    </nav>
-
-    <section id="about" class="card">
-        <h2>소개</h2><hr>
-        <p>
-            빅데이터 전공자로서 기술과 사람 사이의 균형을 고민합니다.<br> 복잡한 데이터 속에서 의미를 찾아내고 그것을 쉽고 명확하게 전달하는 일에 진심을 다하고 있습니다<br>
-            이 페이지는 제가 걸어온 길과 배운 것들 그리고 앞으로 나아갈 방향을 담은 공간입니다. <br>저의 관심과 여정을 공유하며 함께할 기회를 만들어가고 싶습니다.
-        </p>
+    <section id="intro">
+      <h2><i class="fas fa-user"></i> 소개</h2>
+      <p>
+        빅데이터 전공자로서 기술과 사람 사이의 균형을 고민합니다.<br> 복잡한 데이터 속에서 의미를 찾아내고 그것을 쉽고 명확하게 전달하는 일에 진심을 다하고 있습니다<br>
+        이 페이지는 제가 걸어온 길과 배운 것들 그리고 앞으로 나아갈 방향을 담은 공간입니다. <br>저의 관심과 여정을 공유하며 함께할 기회를 만들어가고 싶습니다.
+      </p>
     </section>
 
-    <section id="skills" class="card">
-        <h2>기술 스택</h2><hr>
-        <p>Python, HTML/CSS, Git, Kaggle 등</p>
-    </section>
-
-    <section id="projects" class="card">
-        <h2>프로젝트</h2><hr>
-        <div class="grid">
-            <div class="inner-card">
-                <h3>음악 추천 시스템</h3><hr>
-                <p>사용자의 선호 장르, 가수를 분석하여 비슷한 노래와 가수를 추천해주는 프로그램</p>
-            </div>
-            <div class="inner-card">
-                <h3>프로젝트2</h3><hr>
-                <p>프로젝트2의 설명</p>
-            </div>
-            <!--<div class="inner-card">-->
-                <!--<h3></h3><hr>-->
-                <!--<p></p>-->
-            <!--</div>-->
+    <section id="skills">
+      <h2><i class="fas fa-tools"></i> 기술 스택</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>데이터 분석</h3>
+          <p>Python, Pandas, NumPy</p>
         </div>
+        <div class="card">
+          <h3>머신러닝</h3>
+          <p>CatBoost, XGBoost, Ensemble Methods, Grid Search</p>
+        </div>
+        <div class="card">
+          <h3>웹</h3>
+          <p>HTML, CSS, GitHub Pages</p>
+        </div>
+        <div class="card">
+          <h3>기타 도구</h3>
+          <p>Notion, Velog</p>
+        </div>
+      </div>
     </section>
 
-    <section id="experience" class="card">
-        <h2>경험</h2><hr>
-        <ul>
-            <li>LG WhynotCamp 7기 수료 예정 (2025.05~)</li>
-            <li>서울사이버대 빅데이터정보보호학과 학과 회장</li>
-        </ul>
+    <section id="projects">
+      <h2><i class="fas fa-project-diagram"></i> 프로젝트</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>🎵 음악 추천 시스템</h3>
+          <p>유사한 곡 추천과 특정 악기를 기반으로 사용자에게 최적화된 노래를 추천하는 시스템을 개발했습니다. 시각화를 통해 추천 결과의 이해도를 높였습니다.</p>
+        </div>
+        <div class="card">
+          <h3>📊 데이터 시각화 감정 반응 분석</h3>
+          <p>같은 데이터를 다양한 시각화 방식으로 표현했을 때 사용자의 감정적 수용성과 신뢰도에 어떤 차이가 있는지를 분석하는 논문을 준비 중입니다.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="blog" class="card">
-        <h2>개인 저장소</h2><hr>
-        <p><a href="" target="_blank">가연의 notion</a></p>
-        <p><a href="https://velog.io/@feel_so_fine/posts" target="_blank">velog</a></p>
+    <section id="experience">
+      <h2><i class="fas fa-briefcase"></i> 경험</h2>
+      <ul>
+        <li>LG WhynotCamp 7기 클라우드 기반 빅데이터 분석 과정</li>
+        <li>서울사이버대학교 빅데이터 정보보호학과 학과 회장</li>
+      </ul>
     </section>
 
-    <section id="contact" class="card">
-        <h2>연락처</h2><hr>
-        <p>저와 함께 일하고 싶거나 프로젝트에 대해 더 알고 싶다면 이메일 <a href="">gayoniee16@gmail.com</a>으로 연락해주세요</p>
+    <section>
+      <h2><i class="fas fa-blog"></i> 블로그 및 링크</h2>
+      <ul>
+        <li><a href="https://velog.io/@feel_so_fine/posts" target="_blank">Velog 블로그</a></li>
+        <li><a href="#" target="_blank">Notion 링크</a> (추후 연동 예정)</li>
+      </ul>
     </section>
 
     <footer>
-        <p>&copy; 2025 홍가연. All rights reserved.</p>
+      &copy; 2025 홍가연. All rights reserved.
     </footer>
+  </div>
 
-    <script>
+  <script>
+    const navBox = document.getElementById("scrollingNav");
+    let lastScrollY = window.scrollY;
 
-        const toggleButton = document.getElementById('darkModeToggle');
-        const body = document.body;
+    function followScroll() {
+        const offset = 100;
+        const targetY = window.scrollY + offset;
 
-        toggleButton.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+        const delta = targetY - parseFloat(navBox.style.top || 0);
+        navBox.style.transform = `translateY(${delta}px)`;
+    }
 
-            if (body.classList.contains('dark-mode')) {
-                toggleButton.textContent = '화이트 모드';
-            } else {
-                toggleButton.textContent = '다크 모드';
-            }
+    window.addEventListener("scroll", () => {
+        followScroll();
+    });
+
+    window.addEventListener("load", () => {
+        navBox.style.top = "80px";
+        navBox.style.transform = "translateY(0)";
+    });
+
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".scrolling-nav-box nav a");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        if (scrollY >= sectionTop - 120) {
+            current = section.getAttribute("id");
+        }
         });
 
-        const p = document.getElementById('typing');
-        const text = p.textContent;
-        p.textContent = '';
-
-        [...text].forEach((char, i) => {
-            setTimeout(() => {
-                p.textContent += char;
-            }, i * 180);
+        navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+        }
         });
-    </script>
+    });
+  </script>
 </body>
 </html>
