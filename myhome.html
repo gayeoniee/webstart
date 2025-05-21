@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가연의 홈페이지</title>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #2e3a32;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(225deg, #c8eccd41, #b5cfb7);
+            padding: 50px 20px;
+            border-radius: 20px;
+            border-top-left-radius: 70px;
+            border-top-right-radius: 70px;
+            border-width: 4px;
+            border-color: #6f8b81;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            color: #3b3029;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.3rem;
+            margin-bottom: 30px;
+            color: #2b3a32;
+        }
+
+        header p {
+            font-size: 1.0rem;
+        }
+
+        .dark-toggle {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 30px;
+            background-color: #688568;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-toggle:hover {
+            background-color: #3f523f;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        nav a {
+            background-color: #aac5ac;
+            padding: 8px 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: #2b3833;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background: linear-gradient(135deg, #7faa85, #808680);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #faf8f4;
+            padding: 20px;
+            border-radius: 20px;
+            border-style: solid;
+            border-width: 0px 0px 0px 4px;
+            border-color: #8daf84;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .inner-card {
+            padding: 20px;
+            border-style: inset;
+            border-color: #8daf84;
+            background-color: #fffcf6;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7e7e7e;
+            font-size: 0.9rem;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        h2 {
+            color: #3c4a40;
+        }
+
+        h3 {
+            color: #6a584a;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #8ea386;
+        }
+
+        .dark-mode {
+            background-color: #2e3a32;
+            color: #f2efe7;
+        }
+
+        .dark-mode header {
+            background: linear-gradient(225deg, #627768, #6c7971);
+            color: #ece8df;
+        }
+
+        .dark-mode nav a {
+            background-color: #718574;
+            color: #f2efe7;
+        }
+
+        .dark-mode .card {
+            background-color: #97a79c;
+            border-color: #91a189;
+            color: #f5efe6;
+        }
+
+        .dark-mode .inner-card {
+            background-color: #4d5b51;
+            color: #e9e4d8;
+        }
+
+        .dark-mode hr {
+            background-color: #d9e9d5;
+        }
+
+        .dark-mode h3 {
+            color: white;
+        }
+
+        .dark-mode header p {
+            font-size: 1.0rem;
+            font-weight: 500;
+            animation: fadeInUp 1s ease-out;
+            background: linear-gradient(270deg, #e7f8e0, #b2b0ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out, gradientMove 6s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        header p {
+            font-size: 1.0rem;
+            font-weight: 500;
+            animation: fadeInUp 1s ease-out;
+            background: linear-gradient(270deg, #619649, #7873f5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out, gradientMove 6s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #typing::after {
+            content: "|";
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <button class="dark-toggle" id="darkModeToggle">다크 모드</button>
+        <h1>홍가연의 프로필 홈</h1>
+        <p id="typing">화려하진 않지만 흔들리지 않는 걸음으로 오래도록 남는 사람을 꿈꿉니다</p>
+    </header>
+
+    <nav>
+        <a href="#about">소개</a>
+        <a href="#skills">기술 스택</a>
+        <a href="#projects">프로젝트</a>
+        <a href="#experience">경험</a>
+        <a href="#blog">개인 저장소</a>
+        <a href="#contact">연락</a>
+    </nav>
+
+    <section id="about" class="card">
+        <h2>소개</h2><hr>
+        <p>
+            빅데이터 전공자로서 기술과 사람 사이의 균형을 고민합니다.<br> 복잡한 데이터 속에서 의미를 찾아내고 그것을 쉽고 명확하게 전달하는 일에 진심을 다하고 있습니다<br>
+            이 페이지는 제가 걸어온 길과 배운 것들 그리고 앞으로 나아갈 방향을 담은 공간입니다. <br>저의 관심과 여정을 공유하며 함께할 기회를 만들어가고 싶습니다.
+        </p>
+    </section>
+
+    <section id="skills" class="card">
+        <h2>기술 스택</h2><hr>
+        <p>Python, HTML/CSS, Git, Kaggle 등</p>
+    </section>
+
+    <section id="projects" class="card">
+        <h2>프로젝트</h2><hr>
+        <div class="grid">
+            <div class="inner-card">
+                <h3>음악 추천 시스템</h3><hr>
+                <p>사용자의 선호 장르, 가수를 분석하여 비슷한 노래와 가수를 추천해주는 프로그램</p>
+            </div>
+            <div class="inner-card">
+                <h3>프로젝트2</h3><hr>
+                <p>프로젝트2의 설명</p>
+            </div>
+            <!--<div class="inner-card">-->
+                <!--<h3></h3><hr>-->
+                <!--<p></p>-->
+            <!--</div>-->
+        </div>
+    </section>
+
+    <section id="experience" class="card">
+        <h2>경험</h2><hr>
+        <ul>
+            <li>LG WhynotCamp 7기 수료 예정 (2025.05~)</li>
+            <li>서울사이버대 빅데이터정보보호학과 학과 회장</li>
+        </ul>
+    </section>
+
+    <section id="blog" class="card">
+        <h2>개인 저장소</h2><hr>
+        <p><a href="" target="_blank">가연의 notion</a></p>
+        <p><a href="https://velog.io/@feel_so_fine/posts" target="_blank">velog</a></p>
+    </section>
+
+    <section id="contact" class="card">
+        <h2>연락처</h2><hr>
+        <p>저와 함께 일하고 싶거나 프로젝트에 대해 더 알고 싶다면 이메일 <a href="">gayoniee16@gmail.com</a>으로 연락해주세요</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 홍가연. All rights reserved.</p>
+    </footer>
+
+    <script>
+
+        const toggleButton = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                toggleButton.textContent = '화이트 모드';
+            } else {
+                toggleButton.textContent = '다크 모드';
+            }
+        });
+
+        const p = document.getElementById('typing');
+        const text = p.textContent;
+        p.textContent = '';
+
+        [...text].forEach((char, i) => {
+            setTimeout(() => {
+                p.textContent += char;
+            }, i * 180);
+        });
+    </script>
+</body>
+</html>
