@@ -19,6 +19,8 @@
       scroll-behavior: smooth;
       padding: 0px 40px;
       padding-top: 30px;
+      display: flex;
+      min-height: 100vh;
     }
 
     a {
@@ -236,6 +238,74 @@
       color: #80cbc4;
     }
 
+    .sidebar {
+      background-color: #ffffff3c;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      padding: 20px;
+      margin: 40px auto;
+      top: 40px;
+      z-index: 10;
+      transition: all 0.3s ease;
+      max-width: 400px;
+      height: auto;
+    }
+
+    .sidebar .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sidebar .profile img {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar .profile h2 {
+      font-size: 1.5rem;
+      color: #1a3d2f;
+      margin: 0;
+    }
+
+    .sidebar .profile p {
+      font-size: 0.9rem;
+      color: #1a3d2fad;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .sidebar h2,
+    .sidebar p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: static;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .sidebar .profile {
+        flex-direction: row;
+        justify-content: center;
+        text-align: left;
+      }
+
+      .sidebar .profile p {
+        text-align: left;
+      }
+    }
+
+
   </style>
 </head>
 <body>
@@ -257,6 +327,17 @@
       <h1>GAYEONfolio</h1>
       <p>화려하진 않지만 흔들리지 않는 걸음으로 오래도록 남는 사람을 꿈꿉니다</p>
     </header>
+
+    <nav class="sidebar">
+      <div class="profile">
+        <img src="my-profile.jpg" alt="프로필 사진" />
+        <h2>홍가연</h2>
+        <p>
+          2000.06.28<br>
+          데이터 분석가 지망생<br>
+        </p>
+      </div>
+    </nav>
 
     <section id="intro">
       <h2><i class="fas fa-user"></i> 소개</h2>
