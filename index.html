@@ -133,7 +133,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
     }
 
@@ -143,6 +143,10 @@
       border-radius: 12px;
       padding: 1.5rem;
       transition: box-shadow 0.3s ease;
+
+      display: flex;
+      flex-direction: column;
+      align-items: left;
     }
 
     .card:hover {
@@ -163,6 +167,13 @@
       }
     }
 
+    .card h3 {
+      margin-bottom: 20px;
+      border-bottom: #1a3d2f solid 2px;
+      padding-bottom: 5px;
+      width: 260px;
+      position: static;
+    }
 
     footer {
       text-align: center;
@@ -305,6 +316,18 @@
       }
     }
 
+    @media (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
 
   </style>
 </head>
@@ -330,7 +353,7 @@
 
     <nav class="sidebar">
       <div class="profile">
-        <img src="my-profile.jpg" alt="프로필 사진" />
+        <img src="./profile/my_profile.png" alt="프로필 사진" />
         <h2>홍가연</h2>
         <p>
           2000.06.28<br>
@@ -352,19 +375,15 @@
       <div class="grid">
         <div class="card">
           <h3>데이터 분석</h3>
-          <p>Python, Pandas, NumPy</p>
+          <p>Python<br> Pandas<br> NumPy</p>
         </div>
         <div class="card">
           <h3>머신러닝</h3>
-          <p>CatBoost, XGBoost, Ensemble Methods, Grid Search</p>
+          <p>CatBoost<br> XGBoost<br> Ensemble Methods<br> Grid Search</p>
         </div>
         <div class="card">
-          <h3>웹</h3>
-          <p>HTML, CSS, GitHub Pages</p>
-        </div>
-        <div class="card">
-          <h3>기타 도구</h3>
-          <p>Notion, Velog</p>
+          <h3>웹 & 기타</h3>
+          <p>HTML<br> CSS<br>GitHub Pages<br> Notion</p>
         </div>
       </div>
     </section>
