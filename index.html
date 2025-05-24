@@ -39,14 +39,15 @@
       border-radius: 10px;
       backdrop-filter: blur(10px);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease transform 0.3s ease;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      z-index: 1000;
+      transform: translateY(0);
+      opacity: 1;
     }
 
-    .scrolling-nav-box {
-      transform: translateY(-20px);
+    .scrolling-nav-box.hidden {
+      transform: translateY(-100%);
       opacity: 0;
-      animation: navFadeIn 0.6s forwards ease-out;
-      animation-delay: 0.3s;
     }
 
     @keyframes navFadeIn {
@@ -348,30 +349,46 @@
       margin-right: 0.4em;
     }
 
+    @media (max-width: 640px) {
+      .scrolling-nav-box nav {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .scrolling-nav-box nav {
+        flex-direction: row;
+      }
+
+      #mode-toggle {
+        margin-left: 80%;
+      }
+    }
+
+    
 
   </style>
 </head>
 <body>
+  <div class="scrolling-nav-box" id="scrollingNav">
+      <nav>
+          <ul>
+            <li><a href="#intro">소개</a></li>
+            <li><a href="#skills">기술 스택</a></li>
+            <li><a href="#projects">프로젝트</a></li>
+            <li><a href="#experience">경험</a></li>
+          </ul>
+          <button id="mode-toggle">🌙</button>
+      </nav>
+  </div>
 
-    <div class="scrolling-nav-box" id="scrollingNav">
-        <nav>
-            <ul>
-              <li><a href="#intro">소개</a></li>
-              <li><a href="#skills">기술 스택</a></li>
-              <li><a href="#projects">프로젝트</a></li>
-              <li><a href="#experience">경험</a></li>
-            </ul>
-            <button id="mode-toggle">🌙</button>
-        </nav>
-    </div>
+  <div class="container">
+  <header>
+    <h1>GAYEONfolio</h1>
+    <p>화려하진 않지만 흔들리지 않는 걸음으로 오래도록 남는 사람을 꿈꿉니다</p>
+  </header>
 
-    <div class="container">
-    <header>
-      <h1>GAYEONfolio</h1>
-      <p>화려하진 않지만 흔들리지 않는 걸음으로 오래도록 남는 사람을 꿈꿉니다</p>
-    </header>
-
-    <nav class="sidebar">
+  <nav class="sidebar">
       <div class="profile">
         <img src="./profile/my_profile.png" alt="프로필 사진" />
         <h2>홍가연</h2>
@@ -380,79 +397,79 @@
           데이터 분석가 지망생<br>
         </p>
       </div>
-    </nav>
+  </nav>
 
-    <section id="intro">
-      <h2><i class="fas fa-user"></i> 소개</h2>
-      <p>
-        빅데이터 전공자로서 기술과 사람 사이의 균형을 고민합니다.<br> 복잡한 데이터 속에서 의미를 찾아내고 그것을 쉽고 명확하게 전달하는 일에 진심을 다하고 있습니다.<br>
-        이 페이지는 제가 걸어온 길과 배운 것들 그리고 앞으로 나아갈 방향을 담은 공간입니다. <br>저의 관심과 여정을 공유하며 함께할 기회를 만들어가고 싶습니다.
-      </p>
-    </section>
+  <section id="intro" class="content-section hidden-section">
+    <h2><i class="fas fa-user"></i> 소개</h2>
+    <p>
+      빅데이터 전공자로서 기술과 사람 사이의 균형을 고민합니다.<br> 복잡한 데이터 속에서 의미를 찾아내고 그것을 쉽고 명확하게 전달하는 일에 진심을 다하고 있습니다.<br>
+      이 페이지는 제가 걸어온 길과 배운 것들 그리고 앞으로 나아갈 방향을 담은 공간입니다. <br>저의 관심과 여정을 공유하며 함께할 기회를 만들어가고 싶습니다.
+    </p>
+  </section>
 
-    <section id="skills">
-      <h2><i class="fas fa-tools"></i> 기술 스택</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>데이터 분석</h3>
-          <p><img src="./profile/python_icon.png" alt="">Python<br> Pandas<br> NumPy</p>
-        </div>
-        <div class="card">
-          <h3>머신러닝</h3>
-          <p>CatBoost<br> XGBoost<br> Ensemble Methods<br> Grid Search</p>
-        </div>
-        <div class="card">
-          <h3>웹 & 기타</h3>
-          <p><img src="./profile/html_icon.png" alt="">HTML<br> <img src="./profile/css_icon.png" alt="">CSS<br><img src="./profile/github_icon.png" alt="">GitHub Pages<br> <img src="./profile/notion_icon.png" alt="">Notion</p>
-        </div>
+  <section id="skills" class="content-section hidden-section">
+    <h2><i class="fas fa-tools"></i> 기술 스택</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>데이터 분석</h3>
+        <p><img src="./profile/python_icon.png" alt="">Python<br> Pandas<br> NumPy</p>
       </div>
-    </section>
-
-    <section id="projects">
-      <h2><i class="fas fa-project-diagram"></i> 프로젝트</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>🎵 음악 추천 시스템</h3>
-          <p>유사한 곡 추천과 특정 악기를 기반으로 사용자에게 최적화된 노래를 추천하는 시스템을 개발했습니다. 시각화를 통해 추천 결과의 이해도를 높였습니다.</p>
-        </div>
-        <div class="card">
-          <h3>📊 데이터 시각화 감정 반응 분석</h3>
-          <p>같은 데이터를 다양한 시각화 방식으로 표현했을 때 사용자의 감정적 수용성과 신뢰도에 어떤 차이가 있는지를 분석하는 논문을 준비 중입니다.</p>
-        </div>
+      <div class="card">
+        <h3>머신러닝</h3>
+        <p>CatBoost<br> XGBoost<br> Ensemble Methods<br> Grid Search</p>
       </div>
-    </section>
+      <div class="card">
+        <h3>웹 & 기타</h3>
+        <p><img src="./profile/html_icon.png" alt="">HTML<br> <img src="./profile/css_icon.png" alt="">CSS<br><img src="./profile/github_icon.png" alt="">GitHub Pages<br> <img src="./profile/notion_icon.png" alt="">Notion</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="experience">
-      <h2><i class="fas fa-briefcase"></i> 경험</h2>
-      <ul>
-        <li>LG WhynotCamp 7기 클라우드 기반 빅데이터 분석 과정</li>
-        <li>서울사이버대학교 빅데이터 정보보호학과 학과 회장</li>
-      </ul>
-    </section>
+  <section id="projects" class="content-section hidden-section">
+    <h2><i class="fas fa-project-diagram"></i> 프로젝트</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>🎵 음악 추천 시스템</h3>
+        <p>유사한 곡 추천과 특정 악기를 기반으로 사용자에게 최적화된 노래를 추천하는 시스템을 개발했습니다. 시각화를 통해 추천 결과의 이해도를 높였습니다.</p>
+      </div>
+      <div class="card">
+        <h3>📊 데이터 시각화 감정 반응 분석</h3>
+        <p>같은 데이터를 다양한 시각화 방식으로 표현했을 때 사용자의 감정적 수용성과 신뢰도에 어떤 차이가 있는지를 분석하는 논문을 준비 중입니다.</p>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2><i class="fas fa-blog"></i>개인저장소</h2>
-      <ul>
-        <li><a href="https://velog.io/@feel_so_fine/posts" target="_blank">Velog 블로그</a></li>
-        <li><a href="#" target="_blank">Notion 링크</a> (추후 연동 예정)</li>
-      </ul>
-    </section>
+  <section id="experience" class="content-section hidden-section">
+    <h2><i class="fas fa-briefcase"></i> 경험</h2>
+    <ul>
+      <li>LG WhynotCamp 7기 클라우드 기반 빅데이터 분석 과정</li>
+      <li>서울사이버대학교 빅데이터 정보보호학과 학과 회장</li>
+    </ul>
+  </section>
 
-    <section id="email">
-      <h2><i class="fas fa-user"></i> 연락처</h2>
-      <p>
-        프로젝트에 대해 궁금하시거나 함께 일하고 싶으시면 아래로 연락 주세요.
-      </p>
-      <ul>
-        <li><a href="" target="_blank">email</a></li>
-        <li><a href="#" target="_blank">인스타그램</a> (추후 연동 예정)</li>
-      </ul>
-    </section>
+  <section>
+    <h2><i class="fas fa-blog"></i>개인저장소</h2>
+    <ul>
+      <li><a href="https://velog.io/@feel_so_fine/posts" target="_blank">Velog 블로그</a></li>
+      <li><a href="#" target="_blank">Notion 링크</a> (추후 연동 예정)</li>
+    </ul>
+  </section>
 
-    <footer>
-      &copy; 2025 홍가연. All rights reserved.
-    </footer>
-  </div>
+  <section id="email">
+    <h2><i class="fas fa-user"></i> 연락처</h2>
+    <p>
+      프로젝트에 대해 궁금하시거나 함께 일하고 싶으시면 아래로 연락 주세요.
+    </p>
+    <ul>
+      <li><a href="" target="_blank">email</a></li>
+      <li><a href="#" target="_blank">인스타그램</a> (추후 연동 예정)</li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2025 홍가연. All rights reserved.
+  </footer>
+
 
   <script>
     const toggleBtn = document.getElementById('mode-toggle');
@@ -496,7 +513,33 @@
       }
     });
   });
-    
+
+    let lastScrollY = window.scrollY;
+    const navBox = document.querySelector('.scrolling-nav-box');
+    let isScrolling;
+    let isHidden = false;
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        if (!isHidden) {
+          navBox.classList.add('hidden');
+          isHidden = true;
+        }
+      }
+
+      clearTimeout(isScrolling);
+
+      isScrolling = setTimeout(() => {
+        if (isHidden) {
+          navBox.classList.remove('hidden');
+          isHidden = false;
+        }
+      }, 400);
+
+      lastScrollY = currentScrollY;
+    });
   </script>
 </body>
 </html>
